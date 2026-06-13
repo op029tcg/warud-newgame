@@ -3,52 +3,68 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>STAR DRIFTER - シューティングゲーム</title>
+  <title>TRION ARENA - ランク戦シミュレーター</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div id="game-wrap">
-    <canvas id="game" width="480" height="720"></canvas>
+    <canvas id="game" width="900" height="600"></canvas>
 
     <!-- HUD -->
     <div id="hud" class="hidden">
-      <div class="hud-row">
-        <span class="hud-label">SCORE</span>
-        <span id="score">0</span>
+      <div class="hud-top">
+        <div class="gauge-block">
+          <div class="gauge-label">トリオン体 <span class="en">TRION BODY</span></div>
+          <div class="bar"><div id="hp-bar" class="bar-fill hp"></div></div>
+        </div>
+        <div class="gauge-block">
+          <div class="gauge-label">トリオン <span class="en">TRION</span></div>
+          <div class="bar"><div id="trion-bar" class="bar-fill trion"></div></div>
+        </div>
+        <div class="hud-stats">
+          <div><span class="st-label">SCORE</span><b id="score">0</b></div>
+          <div><span class="st-label">WAVE</span><b id="wave">1</b></div>
+          <div><span class="st-label">RANK</span><b id="rank">C</b></div>
+        </div>
       </div>
-      <div class="hud-row">
-        <span class="hud-label">HI</span>
-        <span id="hiscore">0</span>
-      </div>
-      <div class="hud-row">
-        <span class="hud-label">LV</span>
-        <span id="level">1</span>
-      </div>
-      <div id="lives"></div>
+
+      <!-- トリガー切り替えスロット -->
+      <div id="trigger-slots"></div>
     </div>
 
     <!-- タイトル画面 -->
     <div id="title-screen" class="overlay">
-      <h1>STAR<br />DRIFTER</h1>
-      <p class="subtitle">縦スクロール・シューティング</p>
-      <div class="controls">
-        <p><b>移動</b> … マウス / 矢印キー・WASD</p>
-        <p><b>ショット</b> … 自動（クリックで連射強化）</p>
-        <p><b>ボム</b> … スペース / 右クリック</p>
+      <div class="logo">
+        <h1>TRION<br />ARENA</h1>
+        <p class="subtitle">ランク戦シミュレーター</p>
       </div>
-      <button id="start-btn">START</button>
-      <p class="hint">クリックまたはスペースで開始</p>
+      <div class="brief">
+        <p>君は界境防衛機関 <b>ボーダー</b> の隊員。</p>
+        <p>トリオン体を駆使し、襲来する <b>近界民（ネイバー）</b> を殲滅せよ。</p>
+      </div>
+      <div class="controls-grid">
+        <div><kbd>WASD</kbd> / <kbd>↑↓←→</kbd><span>移動</span></div>
+        <div><kbd>マウス</kbd><span>照準</span></div>
+        <div><kbd>左クリック</kbd><span>攻撃 / 射撃</span></div>
+        <div><kbd>1</kbd><kbd>2</kbd><kbd>3</kbd><kbd>4</kbd><span>トリガー切替</span></div>
+        <div><kbd>右クリック</kbd> / <kbd>Shift</kbd><span>シールド</span></div>
+        <div><kbd>Space</kbd><span>グラスホッパー(回避)</span></div>
+      </div>
+      <button id="start-btn">トリガー オン</button>
+      <p class="hint">クリック または Enter で開始</p>
     </div>
 
-    <!-- ゲームオーバー画面 -->
+    <!-- ベイルアウト（ゲームオーバー）画面 -->
     <div id="gameover-screen" class="overlay hidden">
-      <h2>GAME OVER</h2>
+      <h2>BAIL OUT</h2>
+      <p class="bail-jp">緊急脱出 ―― トリオン体が破壊された</p>
       <div class="result">
         <div><span>SCORE</span><b id="final-score">0</b></div>
-        <div><span>HI-SCORE</span><b id="final-hi">0</b></div>
+        <div><span>到達WAVE</span><b id="final-wave">1</b></div>
+        <div><span>最終RANK</span><b id="final-rank">C</b></div>
       </div>
-      <p id="new-record" class="hidden">NEW RECORD!</p>
-      <button id="retry-btn">RETRY</button>
+      <p id="new-record" class="hidden">自己ベスト更新！</p>
+      <button id="retry-btn">再出撃</button>
     </div>
   </div>
 
