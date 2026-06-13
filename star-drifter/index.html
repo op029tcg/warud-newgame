@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STAR DRIFTER - シューティングゲーム</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="game-wrap">
+    <canvas id="game" width="480" height="720"></canvas>
+
+    <!-- HUD -->
+    <div id="hud" class="hidden">
+      <div class="hud-row">
+        <span class="hud-label">SCORE</span>
+        <span id="score">0</span>
+      </div>
+      <div class="hud-row">
+        <span class="hud-label">HI</span>
+        <span id="hiscore">0</span>
+      </div>
+      <div class="hud-row">
+        <span class="hud-label">LV</span>
+        <span id="level">1</span>
+      </div>
+      <div id="lives"></div>
+    </div>
+
+    <!-- タイトル画面 -->
+    <div id="title-screen" class="overlay">
+      <h1>STAR<br />DRIFTER</h1>
+      <p class="subtitle">縦スクロール・シューティング</p>
+      <div class="controls">
+        <p><b>移動</b> … マウス / 矢印キー・WASD</p>
+        <p><b>ショット</b> … 自動（クリックで連射強化）</p>
+        <p><b>ボム</b> … スペース / 右クリック</p>
+      </div>
+      <button id="start-btn">START</button>
+      <p class="hint">クリックまたはスペースで開始</p>
+    </div>
+
+    <!-- ゲームオーバー画面 -->
+    <div id="gameover-screen" class="overlay hidden">
+      <h2>GAME OVER</h2>
+      <div class="result">
+        <div><span>SCORE</span><b id="final-score">0</b></div>
+        <div><span>HI-SCORE</span><b id="final-hi">0</b></div>
+      </div>
+      <p id="new-record" class="hidden">NEW RECORD!</p>
+      <button id="retry-btn">RETRY</button>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
